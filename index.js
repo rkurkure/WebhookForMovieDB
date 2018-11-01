@@ -14,7 +14,7 @@ server.use(bodyParser.json());
 
 server.post('/get-movie-details', (req, res) => {
 
-    const movieToSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.movie ? req.body.queryResult.parameters.movie : 'The Godfather';
+    const movieToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : movie;
     const reqUrl = encodeURI(`http://www.omdbapi.com/?t=${movieToSearch}&apikey=${API_KEY}`);
     http.get(reqUrl, (responseFromAPI) => {
         let completeResponse = '';
@@ -27,8 +27,18 @@ server.post('/get-movie-details', (req, res) => {
             dataToSend += `${movie.Title} is a ${movie.Actors} starer ${movie.Genre} movie, released in ${movie.Year}. It was directed by ${movie.Director}`;
 
             return res.json({
-                speech: dataToSend,
-                messages: dataToSend,
+            "fulfillment": {
+            "speech": dataToSend,
+             "messages": [
+                              {
+                                   "type": dataToSend,
+                                   "speech": dataToSend,
+                               }
+                         ]
+                        }
+
+                speech: ,
+                displayText: dataToSend,
                 source: 'get-movie-details'
             });
         });
