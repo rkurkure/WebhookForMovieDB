@@ -28,7 +28,7 @@ server.post('/get-movie-details', (req, res) => {
 
             return res.json({
                 speech: dataToSend,
-                displayText: dataToSend,
+                text: dataToSend,
                 source: 'get-movie-details'
             });
         });
