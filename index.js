@@ -30,9 +30,11 @@ server.post('/get-movie-details', (req, fulfillment) => {
             console.log (dataToSend)
              },
             return fulfillment.json({
-                speech: dataToSend,
-                displayText: dataToSend,
-                source: 'get-movie-details'
+                fulfillmentMessages: [
+                  {
+                      "text": dataToSend
+                   }
+                ],
             });
             
         });
