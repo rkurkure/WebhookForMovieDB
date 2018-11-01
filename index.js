@@ -30,9 +30,7 @@ server.post('/get-movie-details', (req, fulfillment) => {
                 displayText: dataToSend,
                 source: 'get-movie-details'
             });
-            success: function (dataToSend) {
-            console.log (dataToSend)
-         },
+            
         });
     }, (error) => {
         return fulfillment.json({
