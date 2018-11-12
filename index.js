@@ -28,6 +28,7 @@ server.post('/get-movie-details', (req, fulfillment) => {
           
             return fulfillment.json({
                 speech: dataToSend,
+                messages:dataToSend,
                 displayText: dataToSend,
                 source: 'get-movie-details'
             });
