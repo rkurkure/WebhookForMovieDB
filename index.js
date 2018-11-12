@@ -32,6 +32,7 @@ server.post('/get-movie-details', (req, fulfillmentMessages) => {
                 displayText: dataToSend,
                 text:dataToSend,
                 fulfillmentText:dataToSend,
+                "fulfillmentText": dataToSend,
                 source: 'get-movie-details'
                 
             });
