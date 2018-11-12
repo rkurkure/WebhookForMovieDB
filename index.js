@@ -27,13 +27,13 @@ server.post('/get-movie-details', (req, fulfillmentMessages) => {
             dataToSend += `${movie.Title} is a ${movie.Actors} starer ${movie.Genre} movie, released in ${movie.Year}. It was directed by ${movie.Director}`;
           
             return fulfillmentMessages.json({
-                speech: dataToSend,
-                messages:dataToSend,
-                displayText: dataToSend,
-                text:dataToSend,
-                fulfillmentText:dataToSend,
+                "speech": dataToSend,
+                "fulfillmentMessages":dataToSend,
+                "displayText": dataToSend,
+                "text":dataToSend,
+                "fulfillmentText":dataToSend,
                 "fulfillmentText": dataToSend,
-                source: 'get-movie-details'
+                "source": 'get-movie-details'
                 
             });
             
