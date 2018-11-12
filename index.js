@@ -12,7 +12,7 @@ server.use(bodyParser.urlencoded({
 
 server.use(bodyParser.json());
 
-server.post('/get-movie-details', (req, fulfillment) => {
+server.post('/get-movie-details', (req, fulfillmentMessages) => {
 
     const movieToSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.movie ? req.body.queryResult.parameters.movie : 'The Godfather';
     const reqUrl = encodeURI(`http://www.omdbapi.com/?t=${movieToSearch}&apikey=${API_KEY}`);
@@ -26,16 +26,17 @@ server.post('/get-movie-details', (req, fulfillment) => {
             let dataToSend = movieToSearch === 'The Godfather' ? `I don't have the required info on that. Here's some info on 'The Godfather' instead.\n` : '';
             dataToSend += `${movie.Title} is a ${movie.Actors} starer ${movie.Genre} movie, released in ${movie.Year}. It was directed by ${movie.Director}`;
           
-            return fulfillment.json({
+            return fulfillmentMessages.json({
                 speech: dataToSend,
                 messages:dataToSend,
                 displayText: dataToSend,
+                text:dataToSend,
                 source: 'get-movie-details'
             });
             
         });
     }, (error) => {
-        return fulfillment.json({
+        return fulfillmentMessages.json({
             speech: 'Something went wrong!',
             displayText: 'Something went wrong!',
             source: 'get-movie-details'
